@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductComponent } from './product/product.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product-detail/product.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
@@ -17,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
