@@ -11,7 +11,7 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  getProducts(){
+  getProducts():Observable<any>{
     return this.http.get('http://makeup-api.herokuapp.com/api/v1/products.json')
   }
 }
