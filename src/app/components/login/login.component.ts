@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(fb: FormBuilder) { 
+    this.form = fb.group({
+      email: ['Email Goes Here'],
+      password: ['Password Goes Here']
+    })
+  }
 
   ngOnInit(): void {
   }
