@@ -1,24 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './services/products.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'makeup';
-  products = [] 
-
-  constructor(
-    private productsService: ProductsService
-  ) { }
-
  
-  ngOnInit(): void {
-    this.productsService.getProducts().subscribe(products => {
-      this.products = products
-    })
-  }
+  loggedIn = true;
+
 
 }
