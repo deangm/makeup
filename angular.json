@@ -129,6 +129,6 @@
   },
   "defaultProject": "makeup",
   "cli": {
-    "analytics": "6e6e8906-bf4f-4e49-8574-387a2fae6842"
+    "analytics": false
   }
 }
