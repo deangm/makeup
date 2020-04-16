@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-products',
@@ -10,9 +9,9 @@ import { map } from 'rxjs/operators'
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  
 
-  products:Observable<any>
+  public products:Observable<any>;
+  public loaded: boolean = false;
 
   constructor(
     private productsService: ProductsService,
@@ -20,8 +19,18 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products = this.productsService.getProducts()
+    if(this.productsService.loaded) {
+      this.setState(this.productsService.products, true);
+      return;
+    }
+    this.productsService.getProducts().subscribe(products => {
+      console.log(products);
+      this.setState(products, true);
+    })
   }
 
-
+  setState(products, bool: boolean): void {
+    this.loaded = bool;
+    this.products = products;
+  }
 }

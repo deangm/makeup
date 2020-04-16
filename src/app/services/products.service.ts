@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
+  private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+  public loaded: boolean = false;
+  public products: any = '';
+
   constructor(
     private http: HttpClient
   ) { }
 
-  getProducts():Observable<any>{
-    return this.http.get('http://makeup-api.herokuapp.com/api/v1/products.json')
+  getProducts() {
+    this.http.get<Observable<any>>(this.URL).subscribe(products => {
+      this.products = products;
+      this.loaded = true
+    })
+    return this.http.get<Observable<any>>(this.URL);
   }
 }

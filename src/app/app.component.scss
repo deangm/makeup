@@ -1,0 +1,17 @@
+.nav-bar-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+    padding: 0;
+
+    span{
+        padding: 15px 25px;
+        cursor: pointer;
+        outline: none;
+    }
+} 
+
+.router-link-active {
+    color: #ffffff;
+    background-color: #EDC8B8;
+}
