@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductsService {
 
-  private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+  private URL: string = 'https://makeup-api.herokuapp.com/api/v1/products.json';
   public loaded: boolean = false;
   public products: any = '';
 
