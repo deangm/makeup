@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +9,7 @@ export class ProductsService {
 
   private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
   public loaded: boolean = false;
+  public allProducts: any = '';
   public products: any = '';
 
   constructor(
@@ -18,13 +18,14 @@ export class ProductsService {
 
   getProducts() {
     this.http.get<Observable<any>>(this.URL).subscribe(products => {
+      this.allProducts = products;
       this.products = products;
       this.loaded = true
     })
     return this.http.get<Observable<any>>(this.URL);
   }
 
-  getProductsByBrand(brand: string) {
-    return this.http.get<Observable<any>>(`${this.URL}?brand=${brand}`)
+  getProductsByType(type: string) {
+    return this.http.get<Observable<any>>(`${this.URL}?product_type=${type}`)
   }
 }
