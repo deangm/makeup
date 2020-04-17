@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  public products:Observable<any>;
+  public products: Observable<any>;
   public loaded: boolean = false;
 
   constructor(
@@ -18,15 +18,19 @@ export class ProductsComponent implements OnInit {
     private router: Router
   ) { }
 
+
+
+
   ngOnInit(): void {
-    if(this.productsService.loaded) {
+    if (this.productsService.loaded) {
       this.setState(this.productsService.products, true);
-      return;
     }
-    this.productsService.getProducts().subscribe(products => {
-      console.log(products);
-      this.setState(products, true);
-    })
+    else {
+      this.productsService.getProducts().subscribe(products => {
+        console.log(products);
+        this.setState(products, true);
+      })
+    }
   }
 
   setState(products, bool: boolean): void {
@@ -34,3 +38,4 @@ export class ProductsComponent implements OnInit {
     this.products = products;
   }
 }
+
