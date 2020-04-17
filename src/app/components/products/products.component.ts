@@ -12,10 +12,10 @@ export class ProductsComponent implements OnInit {
 
   public products: Observable<any>;
   public loaded: boolean = false;
-  public brandName: string;
+  public productType: string;
 
   constructor(
-    private productsService: ProductsService,
+    public productsService: ProductsService,
     private router: Router
   ) { }
 
@@ -34,10 +34,16 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  getProductsByBrand() {
-    this.productsService.getProductsByBrand(this.brandName).subscribe(products => {
-      console.log(products);
+  resetSearch() {
+    this.products = this.productsService.allProducts;
+    this.productType = '';
+  }
+
+  getProductsByType() {
+    this.productsService.getProductsByType(this.productType).subscribe(products => {
+      this.products = products;
     })
+    this.productsService.getBrands();
   }
 
   setState(products, bool: boolean): void {
