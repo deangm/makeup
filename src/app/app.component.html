@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="loggedIn">
+<mat-toolbar class="nav" *ngIf="loggedIn">
   <mat-toolbar-row class="nav-bar-wrapper">
       <span *ngIf="!loggedIn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</span>
       <span *ngIf="loggedIn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Logout</span>

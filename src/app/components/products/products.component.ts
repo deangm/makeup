@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
 
   public products:Observable<any>;
   public loaded: boolean = false;
+  public brandName: string;
 
   constructor(
     private productsService: ProductsService,
@@ -26,6 +27,12 @@ export class ProductsComponent implements OnInit {
     this.productsService.getProducts().subscribe(products => {
       console.log(products);
       this.setState(products, true);
+    })
+  }
+
+  getProductsByBrand() {
+    this.productsService.getProductsByBrand(this.brandName).subscribe(products => {
+      console.log(products);
     })
   }
 

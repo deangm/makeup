@@ -1,3 +1,20 @@
+<mat-card class="search-wrapper">
+    <div class="brand-search">
+        <mat-form-field appearance="standard">
+            <mat-label>Search Brands</mat-label>
+            <input [(ngModel)]="brandName" matInput placeholder="Makeup brands">
+        </mat-form-field>
+        <button mat-raised-button class="search-brand-btn" (click)="getProductsByBrand()">Search</button>
+    </div>
+    <div class="product-type-search">
+            <mat-form-field appearance="standard">
+                <mat-label>Search Products</mat-label>
+                <input [(ngModel)]="brandName" matInput placeholder="Product">
+            </mat-form-field>
+            <button mat-raised-button class="search-brand-btn" (click)="getProductsByBrand()">Search</button>
+        </div>
+</mat-card>
+
 <div class="products-wrapper">
     <div *ngFor="let product of products" class="products">
         <img class="product-image" [src]="product.image_link" />
