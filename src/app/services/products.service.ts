@@ -23,4 +23,8 @@ export class ProductsService {
     })
     return this.http.get<Observable<any>>(this.URL);
   }
+
+  getProductsByBrand(brand: string) {
+    return this.http.get<Observable<any>>(`${this.URL}?brand=${brand}`)
+  }
 }
