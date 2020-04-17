@@ -21,10 +21,12 @@
 <mat-card class="side-bar-wrapper">
     <div class="brands-filter-wrapper">
         <div class="title">Brands</div>
-        <div class="brands">
-            brand
-            brand
+        <div class="brands" *ngIf="loaded">
+            <div class="brand" *ngFor="let brand of productsService.brands">
+                <mat-checkbox>{{ brand }}</mat-checkbox>
+            </div>
         </div>
+        <div *ngIf="loaded" class="bg-fade"></div>
     </div>
 </mat-card>
 

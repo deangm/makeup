@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   public productType: string;
 
   constructor(
-    private productsService: ProductsService,
+    public productsService: ProductsService,
     private router: Router
   ) { }
 
@@ -39,6 +39,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.getProductsByType(this.productType).subscribe(products => {
       this.products = products;
     })
+    this.productsService.getBrands();
   }
 
   setState(products, bool: boolean): void {

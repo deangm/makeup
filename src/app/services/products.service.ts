@@ -11,6 +11,7 @@ export class ProductsService {
   public loaded: boolean = false;
   public allProducts: any = '';
   public products: any = '';
+  public brands: any = [];
 
   constructor(
     private http: HttpClient
@@ -20,12 +21,21 @@ export class ProductsService {
     this.http.get<Observable<any>>(this.URL).subscribe(products => {
       this.allProducts = products;
       this.products = products;
-      this.loaded = true
+      this.loaded = true;
+      this.getBrands();
     })
     return this.http.get<Observable<any>>(this.URL);
   }
 
   getProductsByType(type: string) {
     return this.http.get<Observable<any>>(`${this.URL}?product_type=${type}`)
+  }
+
+  getBrands() {
+    this.allProducts.forEach(prod => {
+      if(this.brands.indexOf(prod.brand) == -1) {
+        this.brands.push(prod.brand);
+      }
+    })
   }
 }
