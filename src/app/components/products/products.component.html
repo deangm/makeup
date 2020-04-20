@@ -1,9 +1,10 @@
-<div>Products works!</div>
-
-<div *ngFor="let product of products | async">
-    <div>
-        {{product.name}}
-        <div>Product</div>
+<div class="products-wrapper">
+    <div *ngFor="let product of products" class="products">
+        <img class="product-image" [src]="product.image_link" />
+        <div class="product-brand">{{ product.brand }}</div>
+        <div class="product-name">{{ product.name }}</div>
+        <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
     </div>
-    <br>
 </div>
+
+<div class="loading" *ngIf="!loaded"></div>
