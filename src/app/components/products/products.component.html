@@ -1,18 +1,12 @@
 <mat-card class="search-wrapper">
     <div class="brand-search">
         <mat-form-field appearance="standard">
-            <mat-label>Search Brands</mat-label>
-            <input [(ngModel)]="brandName" matInput placeholder="Makeup brands">
+            <mat-label>Search Makeup</mat-label>
+            <input [(ngModel)]="productType" matInput placeholder="Makeup types">
         </mat-form-field>
-        <button mat-raised-button class="search-brand-btn" (click)="getProductsByBrand()">Search</button>
+        <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
     </div>
-    <div class="product-type-search">
-            <mat-form-field appearance="standard">
-                <mat-label>Search Products</mat-label>
-                <input [(ngModel)]="brandName" matInput placeholder="Product">
-            </mat-form-field>
-            <button mat-raised-button class="search-brand-btn" (click)="getProductsByBrand()">Search</button>
-        </div>
+    <button mat-raised-button (click)="resetSearch()">Reset</button>
 </mat-card>
 
 <div class="products-wrapper">
@@ -21,7 +15,20 @@
         <div class="product-brand">{{ product.brand }}</div>
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
+        <button (click)="selectProduct(product)">Details</button>
     </div>
 </div>
+
+<mat-card class="side-bar-wrapper">
+    <div class="brands-filter-wrapper">
+        <div class="title">Brands</div>
+        <div class="brands" *ngIf="loaded">
+            <div class="brand" *ngFor="let brand of productsService.brands">
+                <mat-checkbox>{{ brand }}</mat-checkbox>
+            </div>
+        </div>
+        <div *ngIf="loaded" class="bg-fade"></div>
+    </div>
+</mat-card>
 
 <div class="loading" *ngIf="!loaded"></div>
