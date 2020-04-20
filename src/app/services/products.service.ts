@@ -12,6 +12,7 @@ export class ProductsService {
   public allProducts: any = '';
   public products: any = '';
   public brands: any = [];
+  public selectedProduct: any = undefined;
 
   constructor(
     private http: HttpClient
