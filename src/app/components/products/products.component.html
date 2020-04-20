@@ -16,6 +16,9 @@
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
     </div>
+    <div>
+        <button [routerLink]="['/product', 'product']">Details</button>
+    </div>
 </div>
 
 <mat-card class="side-bar-wrapper">
