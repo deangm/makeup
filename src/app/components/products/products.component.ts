@@ -46,6 +46,11 @@ export class ProductsComponent implements OnInit {
     this.productsService.getBrands();
   }
 
+  selectProduct(product) {
+    this.productsService.selectedProduct = product;
+    this.router.navigate([`/product/${product.id}`]);
+  }
+
   setState(products, bool: boolean): void {
     this.loaded = bool;
     this.products = products;

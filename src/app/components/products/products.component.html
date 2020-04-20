@@ -15,7 +15,7 @@
         <div class="product-brand">{{ product.brand }}</div>
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
-        <button [routerLink]="['/product', product.id]">Details</button>
+        <button (click)="selectProduct(product)">Details</button>
     </div>
 </div>
 
