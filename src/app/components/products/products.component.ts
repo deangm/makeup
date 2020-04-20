@@ -56,8 +56,5 @@ export class ProductsComponent implements OnInit {
     this.products = products;
   }
 
-  routeToDetails(product){
-    this.router.navigate(['/product', product])
-  }
 }
 
