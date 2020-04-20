@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "makeup-ecomm": {
+      "hosting": {
+        "makeup": [
+          "makeup-ecomm"
+        ]
+      }
+    }
+  }
+}
