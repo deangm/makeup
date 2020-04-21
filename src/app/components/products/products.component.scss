@@ -91,6 +91,11 @@
 .search-wrapper {
     margin-left: 285px;
 
+    mat-card-title {
+        margin-top: 30px;
+        font-size: 1.2em;
+    }
+
     .brand-search {
         button {
             color: white;

@@ -7,6 +7,10 @@
         <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
     </div>
     <button mat-raised-button (click)="resetSearch()">Reset</button>
+    <mat-card-title *ngIf="!isFilteredSearch">Displaying {{ products.length }} results</mat-card-title>
+    <mat-card-title *ngIf="isFilteredSearch">Displaying {{ products.length }} results for 
+        <span [style.color]="'blue'">{{ productType }}</span>
+    </mat-card-title>
 </mat-card>
 
 <div class="products-wrapper">
@@ -27,7 +31,7 @@
         <div class="title">Brands</div>
         <div class="brands" *ngIf="loaded">
             <div class="brand" *ngFor="let brand of productsService.brands">
-                <mat-checkbox (input)="filterBrands(brand)">{{ brand }}</mat-checkbox>
+                <mat-checkbox [checked]="brand.selected" (input)="filterBrands(brand)">{{ brand.brand }}</mat-checkbox>
             </div>
         </div>
         <div *ngIf="loaded" class="bg-fade"></div>

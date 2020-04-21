@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +26,10 @@ export class ProductsService {
     })
   }
 
+  resetFilter(){
+    this.products = this.allProducts;
+  }
+
   getProducts() {
     this.http.get<Observable<any>>(this.URL).subscribe(products => {
       this.allProducts = products;
@@ -47,8 +50,9 @@ export class ProductsService {
   getBrands() {
     this.brands = [];
     this.products.forEach(prod => {
-      if(this.brands.indexOf(prod.brand) == -1) {
-        this.brands.push(prod.brand);
+      let idx = this.brands.findIndex(brd => brd.brand == prod.brand);
+      if(idx == -1) {
+        this.brands.push({brand: prod.brand, selected: false});
       }
     })
   }
