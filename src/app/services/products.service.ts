@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsService {
 
-  private URL: string = 'https://makeup-api.herokuapp.com/api/v1/products.json';
+  private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
   public loaded: boolean = false;
   public allProducts: any = '';
   public products: any = '';
