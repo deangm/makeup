@@ -15,7 +15,10 @@
         <div class="product-brand">{{ product.brand }}</div>
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
-        <button (click)="selectProduct(product)">Details</button>
+        <div class="buttons-wrapper">
+            <button mat-raised-button (click)="selectProduct(product)">Details</button>
+            <button mat-raised-button>Add to cart</button>
+        </div>
     </div>
 </div>
 
@@ -24,7 +27,7 @@
         <div class="title">Brands</div>
         <div class="brands" *ngIf="loaded">
             <div class="brand" *ngFor="let brand of productsService.brands">
-                <mat-checkbox>{{ brand }}</mat-checkbox>
+                <mat-checkbox (input)="filterBrands(brand)">{{ brand }}</mat-checkbox>
             </div>
         </div>
         <div *ngIf="loaded" class="bg-fade"></div>

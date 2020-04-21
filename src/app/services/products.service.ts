@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
+  filterBrands(brands) {
+    return this.products.filter(product => {
+      for(let i = 0; i < brands.length; i++) {
+        if(product.brand == brands[i]) return true;
+      }
+    })
+  }
+
   getProducts() {
     this.http.get<Observable<any>>(this.URL).subscribe(products => {
       this.allProducts = products;
@@ -29,11 +38,15 @@ export class ProductsService {
   }
 
   getProductsByType(type: string) {
-    return this.http.get<Observable<any>>(`${this.URL}?product_type=${type}`)
+    this.products = this.allProducts.filter(prod => {
+      return prod.category == type;
+    })
+    return this.products;
   }
-
+  
   getBrands() {
-    this.allProducts.forEach(prod => {
+    this.brands = [];
+    this.products.forEach(prod => {
       if(this.brands.indexOf(prod.brand) == -1) {
         this.brands.push(prod.brand);
       }
