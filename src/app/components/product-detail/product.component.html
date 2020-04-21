@@ -11,6 +11,12 @@
                 </div>
                 <div>
                     <mat-card-content style = "margin-bottom: 200px;">{{product.description}}</mat-card-content>
+                    <mat-form-field>
+                        <mat-select>
+                            <mat-option *ngFor="let color of product.product_colors">{{color.colour_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-card-content>Price: {{product.price_sign}}{{product.price | number: '1.2-2'}} {{product.currency}}</mat-card-content>
                 </div>
                 <mat-card-actions>
                     <button mat-raised-button>Add to Cart</button>
