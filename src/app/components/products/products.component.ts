@@ -3,7 +3,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
-
+import * as data from '../../services/products.json'
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -12,7 +12,7 @@ import { ThrowStmt } from '@angular/compiler';
 export class ProductsComponent implements OnInit {
 
   public products: any = [];
-  public loaded: boolean = false;
+  public loaded: boolean = true;
   public productType: string;
   public brands: string[] = [];
 
@@ -22,15 +22,16 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.productsService.loaded) {
-      this.setState(this.productsService.products, true);
-    }
-    else {
-      this.productsService.getProducts().subscribe(products => {
-        console.log(products);
-        this.setState(products, true);
-      })
-    }
+    this.products = data['default']
+    // if (this.productsService.loaded) {
+    //   this.setState(this.productsService.products, true);
+    // }
+    // else {
+    //   this.productsService.getProducts().subscribe(products => {
+    //     console.log(products);
+    //     this.setState(products, true);
+    //   })
+    // }
   }
 
   resetSearch() {
