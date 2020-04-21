@@ -1,4 +1,5 @@
 {
+
   "targets": {
     "makeup-ecomm": {
       "hosting": {
@@ -9,3 +10,4 @@
     }
   }
 }
+
