@@ -41,14 +41,12 @@ export class AuthService {
     return this.router.navigate(['/']);
   }
 
-  private updateUserData({ uid, email, firstName, lastName, displayName }: User) {
+  private updateUserData({ uid, email, displayName }: User) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
 
     const data = {
       uid,
       email,
-      firstName,
-      lastName,
       displayName
     };
 
