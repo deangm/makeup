@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import  *  as  data  from  './products.json'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+  private URL: string = 'https://makeup-api.herokuapp.com/api/v1/products.json';
   public loaded: boolean = false;
   public allProducts: any = '';
   public products: any = '';
@@ -28,13 +29,13 @@ export class ProductsService {
   }
 
   getProducts() {
-    this.http.get<Observable<any>>(this.URL).subscribe(products => {
-      this.allProducts = products;
-      this.products = products;
-      this.loaded = true;
-      this.getBrands();
-    })
-    return this.http.get<Observable<any>>(this.URL);
+    // this.http.get<Observable<any>>(this.URL).subscribe(products => {
+    //   this.allProducts = products;
+    //   this.products = products;
+    //   this.loaded = true;
+    //   this.getBrands();
+    // })
+    // return this.http.get<Observable<any>>(this.URL);
   }
 
   getProductsByType(type: string) {
