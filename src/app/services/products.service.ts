@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import  *  as  data  from  './products.json'
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +29,13 @@ export class ProductsService {
   }
 
   getProducts() {
-    // this.http.get<Observable<any>>(this.URL).subscribe(products => {
-    //   this.allProducts = products;
-    //   this.products = products;
-    //   this.loaded = true;
-    //   this.getBrands();
-    // })
-    // return this.http.get<Observable<any>>(this.URL);
+    this.http.get<Observable<any>>(this.URL).subscribe(products => {
+      this.allProducts = products;
+      this.products = products;
+      this.loaded = true;
+      this.getBrands();
+    })
+    return this.http.get<Observable<any>>(this.URL);
   }
 
   getProductsByType(type: string) {
