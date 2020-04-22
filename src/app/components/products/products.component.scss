@@ -44,6 +44,17 @@
             color: #EDC8B8;
             margin-top: 3px;
         }
+        .buttons-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            
+            button {
+                color: white;
+                background-color: #5D5CE6;
+            }
+        }
 
     }
 }
@@ -76,6 +87,21 @@
         }
     }
 }
+
 .search-wrapper {
     margin-left: 285px;
+
+    .brand-search {
+        button {
+            color: white;
+            background-color: #5D5CE6;
+            color: white;
+            margin-left: 12px;
+        }
+    }
+    > button {
+        color: white;
+        background-color: #FF4539;
+        margin-top: 13px;
+    }
 }

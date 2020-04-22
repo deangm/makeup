@@ -1,5 +1,13 @@
 {
-  "projects": {
-    "default": "makeup-ecomm"
+
+  "targets": {
+    "makeup-ecomm": {
+      "hosting": {
+        "makeup": [
+          "makeup-ecomm"
+        ]
+      }
+    }
   }
 }
+
