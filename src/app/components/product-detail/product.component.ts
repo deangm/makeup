@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import * as data from '../../../../products.json'
 
 
 @Component({
@@ -10,14 +11,15 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductComponent implements OnInit {
 
-  product
+  product = data['default'][0]
+  color = "default"
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.product = this.productsService.selectedProduct
+    // this.product = this.productsService.selectedProduct
   }
 
 }
