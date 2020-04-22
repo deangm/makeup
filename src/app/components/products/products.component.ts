@@ -76,5 +76,10 @@ export class ProductsComponent implements OnInit {
     if(this.brands.length == 0) {this.products = this.productsService.products}
     else {this.products = this.productsService.filterBrands(this.brands)};
   }
+  
+  routeToDetails(product){
+    this.router.navigate(['/product', product])
+  }
+
 }
 

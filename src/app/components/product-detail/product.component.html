@@ -1,1 +1,31 @@
-<p>product works!</p>
+<div *ngIf="product">
+    <mat-card style="margin-left: 20px; margin-top: 20px; max-width: 80%; border: 1px solid black">
+        <div style="display: flex;">
+            <div>
+                <img [src]="product.image_link" alt="">
+            </div>
+            <div class='product-details'>
+                <div>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>Brand: {{product.brand}}</mat-card-subtitle>
+                </div>
+                <div>
+                    <mat-card-content style = "margin-bottom: 200px;">{{product.description}}</mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button>Add to Cart</button>
+                    <button mat-raised-button>Back</button>
+                </mat-card-actions>
+            </div>
+        </div>
+
+
+    </mat-card>
+    <div>
+        Possibly a review section
+    </div>
+</div>
+
+<div *ngIf="!product">
+    Please Select a Product from <a href='/products'>Products Page</a>
+</div>
