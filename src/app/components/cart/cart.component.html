@@ -1,1 +1,13 @@
-<p>cart works!</p>
+<div class="cart-page-wrapper">
+    <div class="cart-products-wrapper">
+        <div class="products">
+            <mat-card *ngFor="let product of userProducts">
+                <img [src]="product.product.image_link" />
+                <div class="name">
+                    <div>{{ product.product.name }}</div>
+                    <div>Color: <span>{{ product.color }}</span></div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

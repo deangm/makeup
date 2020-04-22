@@ -23,7 +23,7 @@
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
         <div class="buttons-wrapper">
             <button mat-raised-button (click)="selectProduct(product)">Details</button>
-            <button mat-raised-button>Add to cart</button>
+            <button mat-raised-button (click)="addToCart(product)">Add to cart</button>
         </div>
     </div>
 </div>

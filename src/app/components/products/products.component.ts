@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -18,20 +20,27 @@ export class ProductsComponent implements OnInit {
   public brands: any[] = [];
   public isFilteredSearch: boolean;
   public categories: string[] = [];
+  public userid: string;
 
   constructor(
     public productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
+    this.authService.user$.subscribe(user => {
+      if(typeof user === 'object' && user !== null){
+        this.userid = user.uid
+      }
+    })
     if (this.productsService.loaded) {
       this.setState(this.productsService.products, true);
       this.getCategories();
     }
     else {
       this.productsService.getProducts().subscribe(products => {
-        console.log(products);
         this.setState(products, true);
         this.getCategories();
       })
@@ -49,6 +58,15 @@ export class ProductsComponent implements OnInit {
     this.productType = '';
     this.isFilteredSearch = false;
     this.brands = [];
+  }
+
+  addToCart(product) {
+    let item = {
+      product: product,
+      color: 'default',
+      user: this.userid ? this.userid : 1
+    }
+    this.cartService.saveToCart(item)
   }
 
   getProductsByType() {
