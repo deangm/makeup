@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
-import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-products',
@@ -11,10 +9,16 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class ProductsComponent implements OnInit {
 
+  // TODO
+  // add button to reset checkboxes
+  // change search field to select field for makeup
+  // display search. Ex: 'showing 48 results for "lipstick"';
+
   public products: any = [];
   public loaded: boolean = false;
   public productType: string;
-  public brands: string[] = [];
+  public brands: any[] = [];
+  public isFilteredSearch: boolean;
 
   constructor(
     public productsService: ProductsService,
@@ -34,13 +38,19 @@ export class ProductsComponent implements OnInit {
   }
 
   resetSearch() {
+    this.productsService.resetFilter();
+    this.productsService.getBrands();
     this.products = this.productsService.allProducts;
     this.productType = '';
+    this.isFilteredSearch = false;
+    this.brands = [];
   }
 
   getProductsByType() {
     this.products = this.productsService.getProductsByType(this.productType);
     this.productsService.getBrands();
+    this.brands = [];
+    this.isFilteredSearch = true;
   }
 
   selectProduct(product) {
@@ -53,17 +63,20 @@ export class ProductsComponent implements OnInit {
     this.products = products;
   }
 
-  filterBrands(brand) {
-    let idx = this.brands.indexOf(brand);
-    if(idx == -1) {
-      this.brands.push(brand);
+  filterBrands(brand){
+    let idx = this.productsService.brands.findIndex(brd => brd.brand == brand.brand);
+    let brd = this.productsService.brands[idx].selected;
+    if(brd === false){
+      this.productsService.brands[idx].selected = true;
+      this.brands.push(brand.brand);
     } else {
-      this.brands.splice(idx, 1);
+      this.productsService.brands[idx].selected = false;
+      this.brands.splice(this.brands.indexOf(brand.brand), 1);
     }
     if(this.brands.length == 0) {this.products = this.productsService.products}
     else {this.products = this.productsService.filterBrands(this.brands)};
   }
-
+  
   routeToDetails(product){
     this.router.navigate(['/product', product])
   }
