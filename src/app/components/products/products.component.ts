@@ -10,15 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
   // TODO
-  // add button to reset checkboxes
   // change search field to select field for makeup
-  // display search. Ex: 'showing 48 results for "lipstick"';
 
   public products: any = [];
   public loaded: boolean = false;
   public productType: string;
   public brands: any[] = [];
   public isFilteredSearch: boolean;
+  public categories: string[] = [];
 
   constructor(
     public productsService: ProductsService,
@@ -28,13 +27,19 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     if (this.productsService.loaded) {
       this.setState(this.productsService.products, true);
+      this.getCategories();
     }
     else {
       this.productsService.getProducts().subscribe(products => {
         console.log(products);
         this.setState(products, true);
+        this.getCategories();
       })
     }
+  }
+
+  getCategories(){ 
+    this.categories = this.productsService.getCategories();
   }
 
   resetSearch() {

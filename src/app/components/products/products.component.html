@@ -1,9 +1,11 @@
 <mat-card class="search-wrapper">
     <div class="brand-search">
-        <mat-form-field appearance="standard">
-            <mat-label>Search Makeup</mat-label>
-            <input [(ngModel)]="productType" matInput placeholder="Makeup types">
-        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select [(ngModel)]="productType">
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
     </div>
     <button mat-raised-button (click)="resetSearch()">Reset</button>
