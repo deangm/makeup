@@ -16,6 +16,10 @@ export class CartService {
     this.cartRef = this.db.collection<any>('cart')
   }
 
+  deleteProduct(docId){
+    return this.cartRef.doc(docId).delete();
+  }
+
   saveToCart(product) {
     return this.cartRef.add(product)
       .then(_ => console.log('success on add'))

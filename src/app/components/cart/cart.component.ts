@@ -36,10 +36,13 @@ export class CartComponent implements OnInit {
     if(this.products && this.userid){
       this.products.forEach(prod => {
         if(prod.userId == this.userid) {
-          this.userProducts.push({product: prod.product, color: prod.productColor});
+          this.userProducts.push({product: prod.product, color: prod.productColor, docId: prod.docId});
         }
       })
     }
-    console.log(this.userProducts);
+  }
+
+  deleteItem(product) {
+    this.cartService.deleteProduct(product.docId);
   }
 }
