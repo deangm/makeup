@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProductComponent implements OnInit {
 
 
-  product = data['default'][0]
+  product 
   color = "default"
   userid
   constructor(
@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
       this.userid = user.uid
     })
 
-    // this.product = this.productsService.selectedProduct
+    this.product = this.productsService.selectedProduct
   }
 
   addToCart(){
