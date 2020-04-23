@@ -1,0 +1,40 @@
+.cart-page-wrapper {
+    .cart-products-wrapper {
+        margin: 35px 0 0 35px;
+
+        .products {
+            mat-card {
+                width: 60%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin: 20px 0;
+                box-shadow: 0.5px 0px 2px 1px rgba(0,0,0,0.4);
+                
+                img {
+                    width: 120px;
+                    height: 100px;
+                    object-fit: cover;
+                    margin-right: 50px;
+                    border-radius: 2px;
+                }
+
+                .name { 
+                    div:first-child {
+                        font-size: 1.2em;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                    }
+                    div:last-child{
+                        font-size: 0.98em;
+                        font-weight: 400;
+                        
+                        span {
+                            color: #EDC8B8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

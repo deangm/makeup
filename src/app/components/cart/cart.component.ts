@@ -11,7 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CartComponent implements OnInit {
 
   userid
-  products
+  products;
+  userProducts: any[] = [];
 
   constructor(
     private productsService: ProductsService,
@@ -21,13 +22,24 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getObservable().subscribe(product => {
-      console.log(product)
+      this.products = product;
     })
     this.authService.user$.subscribe(user => {
-      this.userid = user.uid
-      console.log(this.userid)
+      if(typeof user === 'object' && user !== null){
+        this.userid = user.uid
+        this.getUsersProducts();
+      }
     })
-    this.products = this.productsService.allProducts
   }
 
+  getUsersProducts(){
+    if(this.products && this.userid){
+      this.products.forEach(prod => {
+        if(prod.userId == this.userid) {
+          this.userProducts.push({product: prod.product, color: prod.productColor});
+        }
+      })
+    }
+    console.log(this.userProducts);
+  }
 }

@@ -13,6 +13,7 @@ export class ProductsService {
   public allProducts: any = '';
   public products: any = '';
   public brands: any = [];
+  public categories: any = [];
   public selectedProduct: any = undefined;
 
   constructor(
@@ -46,6 +47,17 @@ export class ProductsService {
       return prod.category == type;
     })
     return this.products;
+  }
+
+  getCategories(){
+    this.categories = [];
+    this.products.forEach(prod => {
+      let idx = this.categories.findIndex(cat => cat == prod.category);
+      if(idx == -1 && (prod.category != null && prod.category != '')) {
+        this.categories.push(prod.category);
+      }
+    })
+    return this.categories;
   }
   
   getBrands() {
