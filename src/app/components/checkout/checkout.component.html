@@ -1,1 +1,51 @@
-<p>checkout works!</p>
+<div style = "display:flex" class="checkoutCont">
+    <mat-card class = "formCont">
+        <mat-card-title>Checkout</mat-card-title>
+        <mat-card-content>
+            <form>
+                <section>
+                    <mat-form-field class="field">
+                        <input matInput placeholder="name">
+                        <mat-error>
+                            First Name is required
+                        </mat-error>
+                    </mat-form-field>
+                </section>
+
+                <section>
+                    <mat-form-field class="field">
+                        <input matInput placeholder="payment">
+                    </mat-form-field>
+                </section>
+
+                <section>
+                    <mat-form-field class="field">
+                        <mat-select>
+                            <mat-option value="English">English</mat-option>
+                            <mat-option value="Spanish">Spanish</mat-option>
+                            <mat-option value="French">French</mat-option>
+                            <mat-option value="Other">Other</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </section>
+
+                <button mat-raised-button color="primary">Submit</button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class= 'productCont'>
+        <div>Products</div>
+        <mat-card *ngFor="let product of userProducts" class = 'product'>
+            <img [src]="product.product.image_link" />
+            <div class="name" style = "display: flex; align-items: center;">
+                <div>{{ product.product.name }}</div>
+                <!-- <div>Color: <span>{{ product.color }}</span></div> -->
+            </div>
+            <div style = "display: flex; align-items: center;">
+                <div style = "font-weight: bold; font-size: 1.2em;">{{product.product.price_sign}}{{product.product.price}}</div>
+            </div>
+        </mat-card>
+    </mat-card>
+</div>
