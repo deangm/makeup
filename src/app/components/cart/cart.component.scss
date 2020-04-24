@@ -1,40 +1,201 @@
-.cart-page-wrapper {
-    .cart-products-wrapper {
-        margin: 35px 0 0 35px;
+@mixin subtotalItem {
+    padding: 17px;
+    width: 75%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+}
 
-        .products {
-            mat-card {
-                width: 60%;
+.cart-page-wrapper {
+    width: 78%;
+    margin: 0 auto;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+        font-size: 1.06em;
+        padding: 0 10px 35px 10px;
+        border-bottom: 1px solid black;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            div:first-child {
+                font-size: 1.6em;
+                font-weight: bold;
+                margin-right: 20px;
+            }
+            div:last-child {
+                font-size: 1.1em;
+            }
+        }
+        .right {
+            div {
+                font-size: 1.1em;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+    .total-wrapper {
+        position: absolute;
+        right: 150px;
+        height: 420px;
+        width: 360px;
+        background-color: #ECECEC;
+        top: 220px;
+        padding: 22px;
+        border-radius: 5px;
+
+        .button {
+            width: 98%;
+            margin: 0 auto;
+            margin-top: 20px;
+
+            button {
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: left;
+                padding: 20px 10px;
+                font-size: 1.04em;
+                letter-spacing: 2px;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+
+        .title {
+            font-weight: 730;
+            font-size: 1.45em;
+        }
+        .content-wrapper {
+            background-color: white;
+            margin-top: 25px;
+            font-weight: 270;
+            font-size: 1.1em;
+
+            .total-products {
+                @include subtotalItem;
+            }
+            .total-price div:last-child {
+                font-weight: 520;
+            }
+            .item{
+                @include subtotalItem;
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
-                margin: 20px 0;
-                box-shadow: 0.5px 0px 2px 1px rgba(0,0,0,0.4);
-                
-                img {
-                    width: 120px;
-                    height: 100px;
-                    object-fit: cover;
-                    margin-right: 50px;
-                    border-radius: 2px;
+                justify-content: space-between;
+            }
+            .total {
+                font-weight: 530;
+                font-size: 1.05em;
+            }
+        }
+    }
+    .products-wrapper {
+        margin-top: 65px;
+        padding-left: 20px;
+        
+        .product {
+            width: 45%;
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+
+            img{
+                width: 134px;
+                height: 134px;
+                margin-right: 15px;
+            }
+
+            .content {
+                div {
+                    font-size: 1.07em;
+                }
+                height: 140px;
+
+                .title {
+                    font-weight: 700;
+                    font-size: 1.28em;
+                    margin-top: 6px;
                 }
 
-                .name { 
-                    div:first-child {
-                        font-size: 1.2em;
-                        font-weight: 600;
-                        letter-spacing: 1px;
-                    }
-                    div:last-child{
-                        font-size: 0.98em;
-                        font-weight: 400;
-                        
-                        span {
-                            color: #EDC8B8;
-                        }
-                    }
+                .color {
+                    margin: 15px 0;
                 }
+
+                .color span {
+                    color: #EDC8B8;
+                    
+                }
+                .stock {
+                    margin: 15px 0;
+                    color: #31D157;
+                }
+                .delete {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+            .price {
+                position: absolute;
+                right: 20px;
+                font-weight: 500;
+                font-size: 1.15em;
             }
         }
     }
 }
+
+// .cart-page-wrapper {
+//     .cart-products-wrapper {
+//         margin: 35px 0 0 35px;
+
+//         .products {
+//             mat-card {
+//                 position: relative;
+//                 width: 60%;
+//                 display: flex;
+//                 align-items: center;
+//                 justify-content: flex-start;
+//                 margin: 20px 0;
+//                 box-shadow: 0.5px 0px 2px 1px rgba(0,0,0,0.4);
+//                 padding: 6px;
+                
+//                 img {
+//                     width: 110px;
+//                     height: 85px;
+//                     object-fit: cover;
+//                     margin-right: 50px;
+//                     border-radius: 2px;
+//                 }
+
+//                 .name { 
+//                     div:first-child {
+//                         font-size: 1.2em;
+//                         font-weight: 600;
+//                         letter-spacing: 1px;
+//                     }
+//                     div:last-child{
+//                         font-size: 0.98em;
+//                         font-weight: 400;
+                        
+//                         span {
+//                             color: #EDC8B8;
+//                         }
+//                     }
+//                 }
+//                 .delete {
+//                     position: absolute; 
+//                     right: 20px;
+//                     background-color: #FF4539;
+//                     color: white;
+//                 }
+//             }
+//         }
+//     }
+// }
