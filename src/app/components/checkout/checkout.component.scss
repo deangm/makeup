@@ -5,13 +5,20 @@
 .formCont{
     width: 75%;
     text-align: center;
+    border: none;
 }
 .field{
     width: 30%;
     text-align: center;
 }
+.smallField{
+    width:8%;
+    text-align: center;
+    padding: 0 20px
+}
 .productCont{
-    width: 20%
+    width: 20%;
+    border: 1px solid black
 }
 img{
     width:50px;
