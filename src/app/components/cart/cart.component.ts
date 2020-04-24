@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
+  // THINGS TO DISCUSS: added animation message when adding item to cart (should i do it on detials page)
+  // For deleting items from cart, it doesn't render until you switch routes so i do that automatically.
+  // Changed cart page layout
+
   userid
   products;
   userProducts: any[] = [];
