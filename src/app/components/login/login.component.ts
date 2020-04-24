@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { AuthProvider, NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { AuthProvider } from 'ngx-auth-firebaseui';
+
 
 
 @Component({
@@ -21,6 +21,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  printUser(event) {
+    console.log(event);
+  }
+
+  printError(event) {
+    console.error(event);
+  }
 
 }

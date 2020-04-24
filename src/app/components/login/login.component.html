@@ -11,10 +11,15 @@
   <button class="button" (click)="auth.googleSignin()">Login with Google</button>
 </ng-template> -->
 
-<ngx-auth-firebaseui appearance="standard"
+<ngx-auth-firebaseui 
+(onSuccess)="printUser($event)"
+(onError)="printError($event)"
+appearance="standard"
             [providers]="[providers.Google, providers.Facebook, providers.Twitter]"
             [tabindex]="1" [guestEnabled]="false">
             </ngx-auth-firebaseui>
+
+            <ngx-auth-firebaseui-user></ngx-auth-firebaseui-user>
 
 
 <router-outlet></router-outlet>
