@@ -16,6 +16,15 @@ export class CartService {
     this.cartRef = this.db.collection<any>('cart')
   }
 
+  getTotalPrice(products){
+    let priceTotal = 0;
+    products.forEach(prod => {
+      let price = Number(prod.product.price);
+      priceTotal += price;
+    })
+    return priceTotal;
+  }
+
   deleteProduct(docId){
     return this.cartRef.doc(docId).delete();
   }

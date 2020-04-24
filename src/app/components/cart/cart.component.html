@@ -17,11 +17,31 @@
                 <div class="stock">In Stock</div>
                 <div (click)="deleteItem(product)" class="delete">Delete</div>
             </div>
-            <div class="price">{{ product.product.price_sign }}{{ product.product.price }}</div>
+            <div class="price">{{ product.product.price_sign }}{{ product.product.price }}0</div>
         </div>
     </div>
     <div class="total-wrapper">
-        total
+        <div class="title">
+            ORDER SUMMARY:
+        </div>
+        <div class="content-wrapper">
+            <div class="total-products">{{ userProducts.length }} {{ userProducts.length == 1 ? 'Item' : 'Items' }}</div>
+            <div class="item total-price">
+                <div>Items Total</div>
+                <div>${{ totalPrice }}0</div>
+            </div>
+            <div class="item">
+                <div>Shipping</div>
+                <div>FREE</div>
+            </div>
+            <div class="item total">
+                <div>Total</div>
+                <div>PRICE</div>
+            </div>
+        </div>
+        <div class="button">
+            <button>CHECKOUT</button>
+        </div>
     </div>
 </div>
 
