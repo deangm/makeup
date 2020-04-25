@@ -1,13 +1,26 @@
 
-<div *ngIf="auth.user$ | async as user; else login">
-  {{ user | json }}  
+<!-- <div *ngIf="auth.user$ | async as user; else login">
+  <pre>
+  {{ user | json }}
+  </pre>  
 <hr>
 <button class="button" (click)="auth.signOut()">Sign Out</button>
 </div>
 
 <ng-template #login>
   <button class="button" (click)="auth.googleSignin()">Login with Google</button>
-</ng-template>
+</ng-template> -->
+
+<ngx-auth-firebaseui 
+(onSuccess)="printUser($event)"
+(onError)="printError($event)"
+appearance="standard"
+            [providers]="[providers.Google, providers.Facebook, providers.Twitter]"
+            [tabindex]="1" [guestEnabled]="false">
+            </ngx-auth-firebaseui>
+
+            <ngx-auth-firebaseui-user></ngx-auth-firebaseui-user>
+
 
 <router-outlet></router-outlet>
 
