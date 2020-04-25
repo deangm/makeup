@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthProvider } from 'ngx-auth-firebaseui';
+
 
 
 @Component({
@@ -11,20 +11,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+  providers = AuthProvider;
 
   constructor(
-    fb: FormBuilder,
-    public auth: AuthService,
+    // public auth: AuthService,
     private router: Router
-    ) {
-    this.form = fb.group({
-      email: ['Email Goes Here'],
-      password: ['Password Goes Here']
-    });
-  }
+    ) {}
 
   ngOnInit(): void {
+  }
+
+  printUser(event) {
+    console.log(event);
+  }
+
+  printError(event) {
+    console.error(event);
   }
 
 }

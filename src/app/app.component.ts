@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProductsService } from './services/products.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+
+import { AuthProvider } from 'ngx-auth-firebaseui';
+
 
 @Component({
   selector: 'app-root',
@@ -23,5 +27,8 @@ export class AppComponent {
       user == null ? this.googleLoggedIn = false : this.googleLoggedIn = true;
     })
   }
+
+  providers = AuthProvider;
+
 
 }

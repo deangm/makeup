@@ -51,7 +51,7 @@ export class ProductsService {
 
   getCategories(){
     this.categories = [];
-    this.products.forEach(prod => {
+    this.allProducts.forEach(prod => {
       let idx = this.categories.findIndex(cat => cat == prod.category);
       if(idx == -1 && (prod.category != null && prod.category != '')) {
         this.categories.push(prod.category);

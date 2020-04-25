@@ -1,13 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)', opacity: 0 }),
+        animate('200ms ease-in', style({ transform: 'translateY(0%)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ transform: 'translateY(-100%)', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ProductsComponent implements OnInit {
 
@@ -21,6 +33,7 @@ export class ProductsComponent implements OnInit {
   public isFilteredSearch: boolean;
   public categories: string[] = [];
   public userid: string;
+  public itemAddedMessage: boolean = false;
 
   constructor(
     public productsService: ProductsService,
@@ -60,13 +73,21 @@ export class ProductsComponent implements OnInit {
     this.brands = [];
   }
 
+  animateMessage(){
+    this.itemAddedMessage = true;
+    setTimeout(() => {this.itemAddedMessage = false}, 1700)
+  }
+
   addToCart(product) {
-    let item = {
-      product: product,
-      color: 'default',
-      user: this.userid ? this.userid : 1
+    if(this.userid){
+      let item = {
+        product: product,
+        color: 'default',
+        user: this.userid ? this.userid : 1
+      }
+      this.cartService.saveToCart(item);
+      this.animateMessage()
     }
-    this.cartService.saveToCart(item)
   }
 
   getProductsByType() {
