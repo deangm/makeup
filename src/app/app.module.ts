@@ -24,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-
+import {AngularFireAuthModule } from '@angular/fire/auth'
 
 
 
@@ -41,6 +41,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     CartComponent
   ],
   imports: [
+    AngularFireAuthModule,
     BrowserModule,
     AppRoutingModule,
     NgxAuthFirebaseUIModule.forRoot(

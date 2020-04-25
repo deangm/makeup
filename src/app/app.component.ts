@@ -20,7 +20,6 @@ export class AppComponent {
   ){}
   title = 'makeup';
   loggedIn = true;
-<<<<<<< HEAD
   googleLoggedIn: boolean;
 
   ngOnInit(){
@@ -28,8 +27,8 @@ export class AppComponent {
       user == null ? this.googleLoggedIn = false : this.googleLoggedIn = true;
     })
   }
-=======
+
   providers = AuthProvider;
->>>>>>> justin
+
 
 }
