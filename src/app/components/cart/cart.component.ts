@@ -11,14 +11,12 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  // THINGS TO DISCUSS: added animation message when adding item to cart (should i do it on detials page)
-  // For deleting items from cart, it doesn't render until you switch routes so i do that automatically.
-  // Changed cart page layout
-
   userid
   products;
   userProducts: any[] = [];
   totalPrice: number;
+  priceWithTax: number;
+  tax: number;
 
   constructor(
     private productsService: ProductsService,
@@ -48,11 +46,14 @@ export class CartComponent implements OnInit {
       })
     }
     this.totalPrice = this.cartService.getTotalPrice(this.userProducts);
+    this.priceWithTax = this.totalPrice * 1.047;
+    this.tax = this.priceWithTax - this.totalPrice;
   }
 
   deleteItem(product) {
     this.cartService.deleteProduct(product.docId);
-    this.router.navigate(['/products']);
-    setTimeout(() => {this.router.navigate(['/cart']);}, 20)
+  }
+  checkout() {
+    this.router.navigate(['/checkout'])
   }
 }

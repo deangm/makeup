@@ -23,9 +23,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class ProductsComponent implements OnInit {
 
-  // TODO
-  // change search field to select field for makeup
-
   public products: any = [];
   public loaded: boolean = false;
   public productType: string;
