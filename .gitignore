@@ -45,8 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-<<<<<<< HEAD
-public/
-=======
-public/
->>>>>>> b4327f552e4be139eb3f7f9417fc0d41d5b63cdc
+
+/public
+
