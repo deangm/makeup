@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private URL: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+  private URL: string = 'https://makeup-api.herokuapp.com/api/v1/products.json';
   public loaded: boolean = false;
   public allProducts: any = '';
   public products: any = '';
   public brands: any = [];
+  public categories: any = [];
   public selectedProduct: any = undefined;
 
   constructor(
@@ -25,6 +26,10 @@ export class ProductsService {
         if(product.brand == brands[i]) return true;
       }
     })
+  }
+
+  resetFilter(){
+    this.products = this.allProducts;
   }
 
   getProducts() {
@@ -43,12 +48,24 @@ export class ProductsService {
     })
     return this.products;
   }
+
+  getCategories(){
+    this.categories = [];
+    this.allProducts.forEach(prod => {
+      let idx = this.categories.findIndex(cat => cat == prod.category);
+      if(idx == -1 && (prod.category != null && prod.category != '')) {
+        this.categories.push(prod.category);
+      }
+    })
+    return this.categories;
+  }
   
   getBrands() {
     this.brands = [];
     this.products.forEach(prod => {
-      if(this.brands.indexOf(prod.brand) == -1) {
-        this.brands.push(prod.brand);
+      let idx = this.brands.findIndex(brd => brd.brand == prod.brand);
+      if(idx == -1) {
+        this.brands.push({brand: prod.brand, selected: false});
       }
     })
   }

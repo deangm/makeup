@@ -1,1 +1,63 @@
-<p>cart works!</p>
+<div class="cart-page-wrapper">
+    <div class="header">
+        <div class="left">
+            <div>YOUR BAG</div>
+            <div>{{ userProducts.length }} {{ userProducts.length == 1 ? 'Item' : 'Items' }}</div>
+        </div>
+        <div class="right">
+            <div routerLink="/products">Continue shopping</div>
+        </div>
+    </div>
+    <div class="products-wrapper">
+        <div class="product" *ngFor="let product of userProducts">
+            <img [src]="product.product.image_link">
+            <div class="content">
+                <div class="title">{{ product.product.name }}</div>
+                <div class="color">Color: <span>{{ product.color }}</span></div>
+                <div class="stock">In Stock</div>
+                <div (click)="deleteItem(product)" class="delete">Delete</div>
+            </div>
+            <div class="price">{{ product.product.price_sign }}{{ product.product.price }}0</div>
+        </div>
+    </div>
+    <div class="total-wrapper">
+        <div class="title">
+            ORDER SUMMARY:
+        </div>
+        <div class="content-wrapper">
+            <div class="total-products">{{ userProducts.length }} {{ userProducts.length == 1 ? 'Item' : 'Items' }}</div>
+            <div class="item total-price">
+                <div>Items Total</div>
+                <div>${{ totalPrice }}0</div>
+            </div>
+            <div class="item">
+                <div>Shipping</div>
+                <div>FREE</div>
+            </div>
+            <div class="item total">
+                <div>Total</div>
+                <div>PRICE</div>
+            </div>
+        </div>
+        <div class="button">
+            <button>CHECKOUT</button>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="cart-page-wrapper">
+    <div class="cart-products-wrapper">
+        <div class="products">
+            <mat-card *ngFor="let product of userProducts">
+                <img [src]="product.product.image_link" />
+                <div class="name">
+                    <div>{{ product.product.name }}</div>
+                    <div>Color: <span>{{ product.color }}</span></div>
+                </div>
+                <button mat-raised-button class="delete">
+                    Remove
+                </button>
+            </mat-card>
+        </div>
+    </div>
+</div> -->

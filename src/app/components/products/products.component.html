@@ -1,12 +1,22 @@
 <mat-card class="search-wrapper">
     <div class="brand-search">
-        <mat-form-field appearance="standard">
-            <mat-label>Search Makeup</mat-label>
-            <input [(ngModel)]="productType" matInput placeholder="Makeup types">
-        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select [(ngModel)]="productType">
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
     </div>
     <button mat-raised-button (click)="resetSearch()">Reset</button>
+    <mat-card-title *ngIf="!isFilteredSearch">Displaying {{ products.length }} results</mat-card-title>
+    <mat-card-title *ngIf="isFilteredSearch">Displaying {{ products.length }} results for 
+        <span [style.color]="'blue'">{{ productType }}</span>
+    </mat-card-title>
+</mat-card>
+
+<mat-card @slideInOut class="item-added-message" *ngIf="itemAddedMessage">
+        Item Added To Cart
 </mat-card>
 
 <div class="products-wrapper">
@@ -17,7 +27,7 @@
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
         <div class="buttons-wrapper">
             <button mat-raised-button (click)="selectProduct(product)">Details</button>
-            <button mat-raised-button>Add to cart</button>
+            <button mat-raised-button (click)="addToCart(product)">Add to cart</button>
         </div>
     </div>
 </div>
@@ -27,7 +37,7 @@
         <div class="title">Brands</div>
         <div class="brands" *ngIf="loaded">
             <div class="brand" *ngFor="let brand of productsService.brands">
-                <mat-checkbox (input)="filterBrands(brand)">{{ brand }}</mat-checkbox>
+                <mat-checkbox [checked]="brand.selected" (input)="filterBrands(brand)">{{ brand.brand }}</mat-checkbox>
             </div>
         </div>
         <div *ngIf="loaded" class="bg-fade"></div>
