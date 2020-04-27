@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import * as data from '../../../../products.json'
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ReviewsService } from 'src/app/services/reviews.service';
 
 
 
@@ -18,10 +19,14 @@ export class ProductComponent implements OnInit {
   product 
   color = "default"
   userid
+  reviews
+
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private reviewService: ReviewsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +34,10 @@ export class ProductComponent implements OnInit {
       this.userid = user.uid
     })
 
+    this.reviewService.getReviewsForProduct().subscribe(reviews => {
+      this.reviews = reviews.filter(review => review.product_id == this.route.snapshot.params.id)
+    })
+    
     this.product = this.productsService.selectedProduct
   }
 
