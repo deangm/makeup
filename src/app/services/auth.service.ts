@@ -7,13 +7,13 @@ import { AngularFirestore , AngularFirestoreDocument } from '@angular/fire/fires
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User } from './user';
+// import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User>;
+  user$: Observable<any>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -23,7 +23,7 @@ export class AuthService {
   this.user$ = this.afAuth.authState.pipe(
     switchMap(user => {
       if (user) {
-        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        return this.afs.doc<any>(`users/${user.uid}`).valueChanges();
       } else {
         return of(null);
       }
@@ -32,17 +32,17 @@ export class AuthService {
 }
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    const credential = await this.afAuth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
   }
 
   async signOut() {
-    await this.afAuth.auth.signOut();
+    await this.afAuth.signOut();
     return this.router.navigate(['/']);
   }
 
-  private updateUserData({ uid, email, displayName }: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+  private updateUserData({ uid, email, displayName }: any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${uid}`);
 
     const data = {
       uid,
@@ -52,8 +52,6 @@ export class AuthService {
 
     return userRef.set(data, { merge: true });
   }
-
-
 
 }
 
