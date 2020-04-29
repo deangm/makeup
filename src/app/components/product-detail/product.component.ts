@@ -16,7 +16,7 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 export class ProductComponent implements OnInit {
 
 
-  product 
+  product = data['default'][0]
   color = "default"
   userid
   reviews
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
       this.reviews = reviews.filter(review => review.product_id == this.route.snapshot.params.id)
     })
     
-    this.product = this.productsService.selectedProduct
+    // this.product = this.productsService.selectedProduct
   }
 
   addToCart(){

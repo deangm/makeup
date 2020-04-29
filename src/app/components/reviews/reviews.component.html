@@ -1,3 +1,13 @@
-<div *ngFor="let review of reviews">
-    "{{review.review}}"
-</div>
+<mat-card style = margin-bottom:20px; *ngFor="let review of reviews">
+    <mat-card-content>
+        <section>
+            Title Of Review
+        </section>
+        <section>
+            {{review.review}}
+        </section>
+        <section>
+            - name of reviewer
+        </section>
+    </mat-card-content>
+</mat-card>
