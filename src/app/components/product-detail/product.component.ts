@@ -4,7 +4,13 @@ import { ProductsService } from 'src/app/services/products.service';
 import * as data from '../../../../products.json'
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
+<<<<<<< HEAD
 import { trigger, transition, style, animate } from '@angular/animations';
+=======
+import { ReviewsService } from 'src/app/services/reviews.service';
+
+
+>>>>>>> dev
 
 @Component({
   selector: 'app-product',
@@ -25,14 +31,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class ProductComponent implements OnInit {
 
 
-  product 
+  product = data['default'][0]
   color = "default"
   userid
+<<<<<<< HEAD
   itemAddedMessage: boolean = false;
+=======
+  reviews
+  review_text 
+
+>>>>>>> dev
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private reviewService: ReviewsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +54,11 @@ export class ProductComponent implements OnInit {
       this.userid = user.uid
     })
 
-    this.product = this.productsService.selectedProduct
+    this.reviewService.getReviewsForProduct().subscribe(reviews => {
+      this.reviews = reviews.filter(review => review.product_id == this.route.snapshot.params.id)
+    })
+    
+    // this.product = this.productsService.selectedProduct
   }
 
   animateMessage() {
@@ -56,6 +74,20 @@ export class ProductComponent implements OnInit {
     }
     this.cartService.saveToCart(item)
     this.animateMessage();
+  }
+
+  addReview(){
+    if (this.review_text){
+      let review = {
+        review: this.review_text,
+        product_id: this.product.id
+      }
+      this.reviewService.addReview(review)
+    }
+    else{
+      console.log("NO TEXT IN REVIEW")
+    }
+      
   }
 
 }
