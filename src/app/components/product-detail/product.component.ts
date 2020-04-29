@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import * as data from '../../../../products.json'
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ReviewsService } from 'src/app/services/reviews.service';
 
 
 
@@ -15,13 +16,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProductComponent implements OnInit {
 
 
-  product 
+  product = data['default'][0]
   color = "default"
   userid
+  reviews
+  review_text 
+
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private reviewService: ReviewsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +35,11 @@ export class ProductComponent implements OnInit {
       this.userid = user.uid
     })
 
-    this.product = this.productsService.selectedProduct
+    this.reviewService.getReviewsForProduct().subscribe(reviews => {
+      this.reviews = reviews.filter(review => review.product_id == this.route.snapshot.params.id)
+    })
+    
+    // this.product = this.productsService.selectedProduct
   }
 
   addToCart(){
@@ -39,6 +49,20 @@ export class ProductComponent implements OnInit {
       user: this.userid ? this.userid : 1
     }
     this.cartService.saveToCart(item)
+  }
+
+  addReview(){
+    if (this.review_text){
+      let review = {
+        review: this.review_text,
+        product_id: this.product.id
+      }
+      this.reviewService.addReview(review)
+    }
+    else{
+      console.log("NO TEXT IN REVIEW")
+    }
+      
   }
 
 }
