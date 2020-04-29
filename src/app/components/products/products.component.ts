@@ -65,7 +65,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.resetFilter();
     this.productsService.getBrands();
     this.products = this.productsService.allProducts;
-    this.productType = '';
+    this.productType = undefined;
     this.isFilteredSearch = false;
     this.brands = [];
   }
@@ -88,6 +88,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsByType() {
+    if(this.productType == undefined) return;
     this.products = this.productsService.getProductsByType(this.productType);
     this.productsService.getBrands();
     this.brands = [];

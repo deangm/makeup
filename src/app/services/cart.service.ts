@@ -26,7 +26,7 @@ export class CartService {
   }
 
   deleteProduct(docId){
-    return this.db.collection('cart').doc(docId).delete()
+    return this.db.collection('cart').doc(docId).delete();
   }
 
   saveToCart(product) {

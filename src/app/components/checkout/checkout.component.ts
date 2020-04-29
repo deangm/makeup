@@ -48,8 +48,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteItem(product) {
-    this.cartService.deleteProduct(product.docId);
-    this.router.navigate(['/products']);
-    setTimeout(() => {this.router.navigate(['/checkout']);}, 20)
+    this.cartService.deleteProduct(product.docId).then(_ => {
+      this.userProducts = [];
+      this.getUsersProducts();
+    })
   }
 }

@@ -14,9 +14,9 @@ export class CartComponent implements OnInit {
   userid
   products;
   userProducts: any[] = [];
-  totalPrice: number;
-  priceWithTax: number;
-  tax: number;
+  totalPrice: number = 0;
+  priceWithTax: number = 0;
+  tax: number = 0;
 
   constructor(
     private productsService: ProductsService,
@@ -51,7 +51,10 @@ export class CartComponent implements OnInit {
   }
 
   deleteItem(product) {
-    this.cartService.deleteProduct(product.docId);
+    this.cartService.deleteProduct(product.docId).then(_ => {
+      this.userProducts = [];
+      this.getUsersProducts();
+    })
   }
   checkout() {
     this.router.navigate(['/checkout'])
