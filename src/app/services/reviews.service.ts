@@ -16,4 +16,8 @@ export class ReviewsService {
    getReviewsForProduct(){
      return this.reviewsRef.valueChanges()
    }
+
+   addReview(review){
+     return this.reviewsRef.add(review)
+   }
 }

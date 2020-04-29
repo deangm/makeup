@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit {
   color = "default"
   userid
   reviews
+  review_text = "default"
 
   constructor(
     private productsService: ProductsService,
@@ -48,6 +49,16 @@ export class ProductComponent implements OnInit {
       user: this.userid ? this.userid : 1
     }
     this.cartService.saveToCart(item)
+  }
+
+  addReview(){
+    let review = {
+      review: this.review_text,
+      product_id: this.product.id
+
+    }
+    console.log(this.review_text)
+    console.log(review)
   }
 
 }
