@@ -39,11 +39,11 @@
             <form>
                 <section>
                     <mat-form-field style="width:500px;">
-                        <textarea [(ngModel)]="review_text" matInput rows="5" cols="40" placeholder="Leave a Review"></textarea>
+                        <textarea name = "review" #review='ngModel' [(ngModel)]="review_text" matInput rows="5" cols="40" placeholder="Leave a Review"></textarea>
                     </mat-form-field>
                 </section>
                 <section>
-                    <button mat-button>Add Review</button>
+                    <button (click)="addReview()" mat-button>Add Review</button>
                 </section>
             </form>
         </mat-card-content>

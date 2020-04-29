@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   color = "default"
   userid
   reviews
-  review_text = "default"
+  review_text 
 
   constructor(
     private productsService: ProductsService,
@@ -52,13 +52,17 @@ export class ProductComponent implements OnInit {
   }
 
   addReview(){
-    let review = {
-      review: this.review_text,
-      product_id: this.product.id
-
+    if (this.review_text){
+      let review = {
+        review: this.review_text,
+        product_id: this.product.id
+      }
+      this.reviewService.addReview(review)
     }
-    console.log(this.review_text)
-    console.log(review)
+    else{
+      console.log("NO TEXT IN REVIEW")
+    }
+      
   }
 
 }
