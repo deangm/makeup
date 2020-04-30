@@ -23,9 +23,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class ProductsComponent implements OnInit {
 
-  // TODO
-  // change search field to select field for makeup
-
   public products: any = [];
   public loaded: boolean = false;
   public productType: string;
@@ -68,7 +65,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.resetFilter();
     this.productsService.getBrands();
     this.products = this.productsService.allProducts;
-    this.productType = '';
+    this.productType = undefined;
     this.isFilteredSearch = false;
     this.brands = [];
   }
@@ -91,6 +88,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsByType() {
+    if(this.productType == undefined) return;
     this.products = this.productsService.getProductsByType(this.productType);
     this.productsService.getBrands();
     this.brands = [];
