@@ -16,29 +16,47 @@
                 <div>
                     <mat-card-content>{{product.description}}</mat-card-content>
                     <mat-form-field>
-                            <mat-select [(ngModel)]="color">
-                                <mat-option value="default">Select Color</mat-option>
-                                <mat-option *ngFor="let color of product.product_colors" [value]="color.colour_name">{{color.colour_name}}
-                                </mat-option>
-                            </mat-select>
+                        <mat-select [(ngModel)]="color">
+                            <mat-option value="default">Select Color</mat-option>
+                            <mat-option *ngFor="let color of product.product_colors" [value]="color.colour_name">
+                                {{color.colour_name}}
+                            </mat-option>
+                        </mat-select>
 
                     </mat-form-field>
                     <mat-card-content>Price: {{product.price_sign}}{{product.price | number: '1.2-2'}}
                         {{product.currency}}</mat-card-content>
                 </div>
                 <mat-card-actions>
-                    <button (click) = "addToCart()" mat-raised-button>Add to Cart</button>
-                    <button mat-raised-button [routerLink]="['/products']" routerLinkActive="router-link-active" >Back</button>
+                    <button (click)="addToCart()" mat-raised-button>Add to Cart</button>
+                    <button mat-raised-button [routerLink]="['/products']"
+                        routerLinkActive="router-link-active">Back</button>
                 </mat-card-actions>
             </div>
         </div>
 
 
     </mat-card>
-    <div>
-        Possibly a review section
-    </div>
+
+    <mat-card>
+        <mat-card-content>
+            <form>
+                <section>
+                    <mat-form-field style="width:500px;">
+                        <textarea name = "review" #review='ngModel' [(ngModel)]="review_text" matInput rows="5" cols="40" placeholder="Leave a Review"></textarea>
+                    </mat-form-field>
+                </section>
+                <section>
+                    <button (click)="addReview()" mat-button>Add Review</button>
+                </section>
+            </form>
+        </mat-card-content>
+        <div>
+            <app-reviews [reviews]='reviews'></app-reviews>
+        </div>
+    </mat-card>
 </div>
+
 
 <div *ngIf="!product">
     Please Select a Product from <a href='/products'>Products Page</a>

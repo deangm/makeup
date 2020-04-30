@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthProcessService } from 'ngx-auth-firebaseui';
 import { CartService } from 'src/app/services/cart.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -35,14 +35,14 @@ export class ProductsComponent implements OnInit {
   constructor(
     public productsService: ProductsService,
     private router: Router,
-    private authService: AuthService,
+    private authService: AuthProcessService,
     private cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       if(typeof user === 'object' && user !== null){
-        this.userid = user.uid
+        this.userid = user.uid;
       }
     })
     if (this.productsService.loaded) {
