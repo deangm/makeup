@@ -3,7 +3,10 @@
       <span *ngIf="!googleLoggedIn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</span>
       <span *ngIf="googleLoggedIn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Logout</span>
       <span [routerLink]="['/products']" routerLinkActive="router-link-active" >Products</span>
-      <span [routerLink]="['/cart']" routerLinkActive="router-link-active" >Cart</span>
+      <span class="cart-nav" [routerLink]="['/cart']" routerLinkActive="router-link-active">
+        <span>{{ cartService.usersCartProducts.length }}</span>
+        <span>Cart</span>
+      </span>
       <span [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Checkout</span>
   </mat-toolbar-row>
 </mat-toolbar>

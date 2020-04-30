@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
   public products: any = [];
   public loaded: boolean = false;
   public productType: string;
+  public sortType: string;
   public brands: any[] = [];
   public isFilteredSearch: boolean;
   public categories: string[] = [];
@@ -64,10 +65,12 @@ export class ProductsComponent implements OnInit {
   resetSearch() {
     this.productsService.resetFilter();
     this.productsService.getBrands();
-    this.products = this.productsService.allProducts;
     this.productType = undefined;
+    this.sortType = undefined;
     this.isFilteredSearch = false;
     this.brands = [];
+    this.products = this.productsService.allProducts;
+    console.log(this.productsService.allProducts);
   }
 
   animateMessage(){
@@ -87,12 +90,20 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  sortProducts(){
+    if(this.sortType === 'priceLTH') {
+      this.products = this.products.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if(this.sortType === 'priceHTL') {
+      this.products = this.products.sort((a, b) => Number(a.price) - Number(b.price)).reverse();
+    }
+  }
+
   getProductsByType() {
     if(this.productType == undefined) return;
+    this.isFilteredSearch = true;
     this.products = this.productsService.getProductsByType(this.productType);
     this.productsService.getBrands();
     this.brands = [];
-    this.isFilteredSearch = true;
   }
 
   selectProduct(product) {

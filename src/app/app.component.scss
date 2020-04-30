@@ -4,7 +4,7 @@
     font-weight: 300;
     padding: 0;
 
-    span{
+     > span{
         padding: 15px 25px;
         cursor: pointer;
         outline: none;
@@ -17,4 +17,9 @@
 }
 .nav {
     background-color: #E5E5EA;
+}
+.cart-nav {
+    span:first-child{
+        margin-right: 15px;
+    }
 }

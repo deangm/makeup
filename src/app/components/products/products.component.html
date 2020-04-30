@@ -6,7 +6,15 @@
               <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
             </mat-select>
           </mat-form-field>
-        <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
+          <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
+          <mat-form-field appearance="fill">
+            <mat-label>Sort</mat-label>
+            <mat-select [(ngModel)]="sortType">
+              <mat-option value="priceLTH">Price low to high</mat-option>
+              <mat-option value="priceHTL">Price high to low</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button class="search-brand-btn" (click)="sortProducts()">Sort</button>
     </div>
     <button mat-raised-button (click)="resetSearch()">Reset</button>
     <mat-card-title *ngIf="!isFilteredSearch">Displaying {{ products.length }} results</mat-card-title>
