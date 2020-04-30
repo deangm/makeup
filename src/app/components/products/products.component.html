@@ -1,7 +1,7 @@
 <mat-card class="search-wrapper">
     <div class="brand-search">
         <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
+            <mat-label>Filter</mat-label>
             <mat-select [(ngModel)]="productType">
               <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
             </mat-select>

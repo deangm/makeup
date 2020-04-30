@@ -17,7 +17,7 @@
                 <div class="stock">In Stock</div>
                 <div (click)="deleteItem(product)" class="delete">Delete</div>
             </div>
-            <div class="price">{{ product.product.price_sign }}{{ product.product.price }}0</div>
+            <div class="price">{{ product.product.price_sign }}{{ product.product.price }}</div>
         </div>
     </div>
     <div class="total-wrapper">
@@ -28,19 +28,23 @@
             <div class="total-products">{{ userProducts.length }} {{ userProducts.length == 1 ? 'Item' : 'Items' }}</div>
             <div class="item total-price">
                 <div>Items Total</div>
-                <div>${{ totalPrice }}0</div>
+                <div>${{ totalPrice }}</div>
             </div>
             <div class="item">
                 <div>Shipping</div>
                 <div>FREE</div>
             </div>
+            <div class="item tax">
+                <div>Tax</div>
+                <div>${{ tax.toPrecision(3) }}</div>
+            </div>
             <div class="item total">
                 <div>Total</div>
-                <div>PRICE</div>
+                <div>${{ priceWithTax.toPrecision(4) }}</div>
             </div>
         </div>
         <div class="button">
-            <button>CHECKOUT</button>
+            <button (click)="checkout()">CHECKOUT</button>
         </div>
     </div>
 </div>
