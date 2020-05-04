@@ -70,6 +70,7 @@ export class ProductsComponent implements OnInit {
     this.isFilteredSearch = false;
     this.brands = [];
     this.products = this.productsService.allProducts;
+    this.products = this.products.sort((a, b) => a.id - b.id);
     console.log(this.productsService.allProducts);
   }
 

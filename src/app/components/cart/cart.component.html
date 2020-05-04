@@ -10,7 +10,7 @@
     </div>
     <div class="products-wrapper">
         <div class="product" *ngFor="let product of userProducts">
-            <img [src]="product.product.image_link">
+            <img [src]="product.product.api_featured_image">
             <div class="content">
                 <div class="title">{{ product.product.name }}</div>
                 <div class="color">Color: <span>{{ product.color }}</span></div>
