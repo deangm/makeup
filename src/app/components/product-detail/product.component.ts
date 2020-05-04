@@ -26,7 +26,7 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 export class ProductComponent implements OnInit {
 
 
-  product = data['default'][0]
+  product 
   color = "default"
   userid
   itemAddedMessage: boolean = false;
@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
       this.reviews = reviews.filter(review => review.product_id == this.route.snapshot.params.id)
     })
     
-    // this.product = this.productsService.selectedProduct
+    this.product = this.productsService.selectedProduct
   }
 
   animateMessage() {
