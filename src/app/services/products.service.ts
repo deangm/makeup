@@ -27,7 +27,7 @@ export class ProductsService {
       }
     })
   }
-
+  
   resetFilter(){
     this.products = this.allProducts;
   }

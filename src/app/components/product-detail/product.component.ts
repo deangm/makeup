@@ -4,11 +4,8 @@ import { ProductsService } from 'src/app/services/products.service';
 import * as data from '../../../../products.json'
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
-
 import { trigger, transition, style, animate } from '@angular/animations';
-
 import { ReviewsService } from 'src/app/services/reviews.service';
-
 
 @Component({
   selector: 'app-product',
@@ -32,12 +29,9 @@ export class ProductComponent implements OnInit {
   product 
   color = "default"
   userid
-
   itemAddedMessage: boolean = false;
-
   reviews
   review_text 
-
 
   constructor(
     private productsService: ProductsService,

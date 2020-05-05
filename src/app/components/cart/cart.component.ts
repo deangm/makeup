@@ -44,6 +44,7 @@ export class CartComponent implements OnInit {
           this.userProducts.push({product: prod.product, color: prod.productColor, docId: prod.docId});
         }
       })
+      this.cartService.usersCartProducts = this.userProducts;
     }
     this.totalPrice = this.cartService.getTotalPrice(this.userProducts);
     this.priceWithTax = this.totalPrice * 1.047;

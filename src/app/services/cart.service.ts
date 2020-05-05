@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class CartService {
 
   private cartRef: AngularFirestoreCollection<any>
+  public usersCartProducts: any[] = [];
 
   constructor(
     private db: AngularFirestore
@@ -40,7 +41,6 @@ export class CartService {
       .pipe(
         map((items: DocumentChangeAction<any>[]): any[] => {
           return items.map((item: DocumentChangeAction<any>): any => {
-            console.log(item.payload.doc.data())
             return {
               docId: item.payload.doc.id,
               userId: item.payload.doc.data().user,
