@@ -1,8 +1,12 @@
+<mat-card @slideInOut class="item-added-message" *ngIf="itemAddedMessage">
+    Item Added To Cart
+</mat-card>
+
 <div *ngIf="product">
     <mat-card style="margin-left: 20px; margin-top: 20px; max-width: 80%; border: 1px solid black">
         <div style="display: flex;">
             <div>
-                <img [src]="product.image_link" alt="">
+                <img [src]="product.api_featured_image" alt="">
             </div>
             <div class='product-details'>
                 <div>
@@ -11,6 +15,9 @@
                 </div>
                 <div>
                     <mat-card-content>{{product.description}}</mat-card-content>
+                    <mat-card-content class="tag-list">
+                        <span *ngFor="let tag of product.tag_list">{{ tag }}</span>
+                    </mat-card-content>
                     <mat-form-field>
                         <mat-select [(ngModel)]="color">
                             <mat-option value="default">Select Color</mat-option>
@@ -39,7 +46,8 @@
             <form>
                 <section>
                     <mat-form-field style="width:500px;">
-                        <textarea name = "review" #review='ngModel' [(ngModel)]="review_text" matInput rows="5" cols="40" placeholder="Leave a Review"></textarea>
+                        <textarea name="review" #review='ngModel' [(ngModel)]="review_text" matInput rows="5" cols="40"
+                            placeholder="Leave a Review"></textarea>
                     </mat-form-field>
                 </section>
                 <section>

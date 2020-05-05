@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {AngularFireAuthModule } from '@angular/fire/auth';
-import { ReviewsComponent } from './components/reviews/reviews.component'
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { CheckoutSuccessComponent } from './components/checkout-success/checkout-success.component'
 
 
 
@@ -41,7 +42,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component'
     CheckoutComponent,
     LoginComponent,
     CartComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    CheckoutSuccessComponent
   ],
   imports: [
     AngularFireAuthModule,

@@ -1,33 +1,54 @@
 <mat-card class="search-wrapper">
     <div class="brand-search">
-        <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
-            <mat-select [(ngModel)]="productType">
-              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
+        <div class="select-field">
+            <mat-form-field appearance="fill">
+                <mat-label>Filter</mat-label>
+                <mat-select [(ngModel)]="productType">
+                    <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button class="search-brand-btn" (click)="getProductsByType()">Search</button>
+        </div>
+
+        <div class="select-field">
+            <mat-form-field appearance="fill">
+                <mat-label>Sort</mat-label>
+                <mat-select [(ngModel)]="sortType">
+                    <mat-option value="priceLTH">Price low to high</mat-option>
+                    <mat-option value="priceHTL">Price high to low</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button class="search-brand-btn" (click)="sortProducts()">Sort</button>
+        </div>
     </div>
-    <button mat-raised-button (click)="resetSearch()">Reset</button>
-    <mat-card-title *ngIf="!isFilteredSearch">Displaying {{ products.length }} results</mat-card-title>
-    <mat-card-title *ngIf="isFilteredSearch">Displaying {{ products.length }} results for 
-        <span [style.color]="'blue'">{{ productType }}</span>
-    </mat-card-title>
+    <div class="reset-btn-displaying-wrapper">
+        <button class="reset-search" mat-raised-button (click)="resetSearch()">
+            <div>Reset</div>
+            <i class="fas fa-sync"></i>
+        </button>
+        <mat-card-title *ngIf="!isFilteredSearch">Displaying {{ products.length }} results</mat-card-title>
+        <mat-card-title *ngIf="isFilteredSearch">Displaying {{ products.length }} results for
+            <span [style.color]="'blue'">{{ productType }}</span>
+        </mat-card-title>
+    </div>
 </mat-card>
 
 <mat-card @slideInOut class="item-added-message" *ngIf="itemAddedMessage">
-        Item Added To Cart
+    Item Added To Cart
 </mat-card>
 
 <div class="products-wrapper">
     <div *ngFor="let product of products" class="products">
-        <img class="product-image" [src]="product.image_link" />
+        <img class="product-image" [src]="product.api_featured_image" />
         <div class="product-brand">{{ product.brand }}</div>
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.price_sign }}{{ product.price }}</div>
         <div class="buttons-wrapper">
             <button mat-raised-button (click)="selectProduct(product)">Details</button>
-            <button mat-raised-button (click)="addToCart(product)">Add to cart</button>
+            <button mat-raised-button class="cart" (click)="addToCart(product)">
+                <div>Add to cart</div>
+                <i class="fas fa-shopping-bag"></i>
+            </button>
         </div>
     </div>
 </div>

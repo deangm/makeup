@@ -7,3 +7,22 @@ img  {
     flex-direction: column;
     justify-content: space-between;
 }
+.item-added-message {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    background-color: black;
+    color: white;
+    right: 0;
+    z-index: 1;
+}
+.tag-list {
+    color: #EDC8B8;
+
+    span {
+        margin: 5px 15px;
+    }
+}

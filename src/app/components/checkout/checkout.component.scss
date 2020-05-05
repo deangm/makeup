@@ -27,3 +27,61 @@ img{
     display:flex;
     justify-content: space-between;
 }
+.delete-button {
+    cursor: pointer !important;
+}
+.modal {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+
+    .modal-content {
+        padding: 25px;
+        width: 42%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 20%;
+
+        mat-card-title{
+            margin-top: 20px;
+        }
+
+        .buttons-wrapper {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            button:first-child {
+                color: white !important;
+                background-color: rgba(48, 209, 88, 1);
+            }
+            button:last-child {
+                color: white !important;
+                background-color: rgba(255, 69, 58, 1);
+            }
+        }
+    }
+}
+.loading {
+    border: 8px solid;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-color: orange transparent transparent;
+    animation: spin 1s linear infinite;
+    margin: auto;
+    margin-top: 16%;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    z-index: 1;
+}
+
+@keyframes spin {
+    100% {transform: rotate(360deg); filter:hue-rotate(360deg)}
+} 

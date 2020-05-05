@@ -77,7 +77,7 @@
                 <section style="display: flex;justify-content: center;">
                     <div style="text-align: right; width:30%;">
                         <button mat-raised-button [routerLink]="['/cart']" routerLinkActive="router-link-active"  color="warning" style="margin:20px;">Cancel</button>
-                        <button mat-raised-button color="primary" style="margin:20px 0px;">Submit</button>
+                        <button mat-raised-button color="primary" (click)="showModal()" style="margin:20px 0px;">Submit</button>
                     </div>
                 </section>
                 
@@ -90,7 +90,7 @@
     <mat-card class='productCont'>
         <div>Products</div>
         <mat-card *ngFor="let product of userProducts" class='product'>
-            <img [src]="product.product.image_link" />
+            <img [src]="product.product.api_featured_image" />
             <div class="name" style="display: flex; align-items: center;">
                 <div>{{ product.product.name }}</div>
                 <!-- <div>Color: <span>{{ product.color }}</span></div> -->
@@ -99,12 +99,23 @@
                 <div style="font-weight: bold; font-size: 1.2em;">
                     {{product.product.price_sign}}{{product.product.price}}</div>
             </div>
-            <div (click)="deleteItem(product)">X</div>
+            <div class="delete-button" (click)="deleteItem(product)">X</div>
         </mat-card>
         <mat-card>
             <div style="text-align: right; font-weight: bold;font-size:1.3em;">
                 Total Price: ${{totalPrice}}
             </div>
         </mat-card>
+    </mat-card>
+</div>
+
+<div class="modal" *ngIf="modal" @insertRemove>
+    <div class="loading" *ngIf="checkoutSuccess"></div>
+    <mat-card class="modal-content">
+        <mat-card-title>Are you sure you wish to checkout?</mat-card-title>
+        <div class="buttons-wrapper">
+            <button mat-raised-button (click)="checkout()">Yes</button>
+            <button (click)="hideModal()" mat-raised-button>Cancel</button>
+        </div>
     </mat-card>
 </div>

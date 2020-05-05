@@ -54,6 +54,20 @@
                 color: white;
                 background-color: #5D5CE6;
             }
+            .cart {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                div {
+                    display: inline;
+                }
+
+                i {
+                    display: inline;
+                    margin-left: 10px;
+                }
+            }
         }
 
     }
@@ -104,11 +118,6 @@
             margin-left: 12px;
         }
     }
-    > button {
-        color: white;
-        background-color: #FF4539;
-        margin-top: 13px;
-    }
 }
 
 .item-added-message {
@@ -118,7 +127,29 @@
     position: fixed;
     top: 150px;
     left: 0;
-    background-color: #ECECEC;
+    background-color: black;
+    color: white;
     right: 0;
     z-index: 1;
+}
+
+.reset-search {
+    i {
+        display: inline;
+        margin-left: 10px;
+    }
+    div {
+        display: inline;
+    }
+}
+.reset-btn-displaying-wrapper {
+    display: flex;
+    align-items: center;
+
+    button {
+        color: white;
+        background-color: #FF4539;
+        margin-top: 13px;
+        margin-right: 20px;
+    }
 }

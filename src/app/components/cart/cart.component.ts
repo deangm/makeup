@@ -14,7 +14,9 @@ export class CartComponent implements OnInit {
   userid
   products;
   userProducts: any[] = [];
-  totalPrice: number;
+  totalPrice: number = 0;
+  priceWithTax: number = 0;
+  tax: number = 0;
 
   constructor(
     private productsService: ProductsService,
@@ -42,13 +44,20 @@ export class CartComponent implements OnInit {
           this.userProducts.push({product: prod.product, color: prod.productColor, docId: prod.docId});
         }
       })
+      this.cartService.usersCartProducts = this.userProducts;
     }
     this.totalPrice = this.cartService.getTotalPrice(this.userProducts);
+    this.priceWithTax = this.totalPrice * 1.047;
+    this.tax = this.priceWithTax - this.totalPrice;
   }
 
   deleteItem(product) {
-    this.cartService.deleteProduct(product.docId);
-    this.router.navigate(['/products']);
-    setTimeout(() => {this.router.navigate(['/cart']);}, 20)
+    this.cartService.deleteProduct(product.docId).then(_ => {
+      this.userProducts = [];
+      this.getUsersProducts();
+    })
+  }
+  checkout() {
+    this.router.navigate(['/checkout'])
   }
 }
